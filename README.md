@@ -5,11 +5,31 @@
 
  ### go-goo.gl-parser
 
-__usage__
+__ex.)__
 
 ```go
+package main
 
+import (
+	"fmt"
+	"github.com/smith-30/go-goo.gl-parser/goo.gl/parser"
+)
+
+func main() {
+	p := parser.NewParser("your api token")
+	d, err := p.DecodeURL("https://goo.gl/kMxDaw")
+	if err != nil {
+		fmt.Printf("%v\n", err)
+	}
+
+	fmt.Println(d) // https://github.com/smith-30/go-goo.gl-parser
+}
 ```
+
+### requirements
+
+- URL Shortener API's token  
+Please get it from console.developers.google.com 
 
 ### License
 
