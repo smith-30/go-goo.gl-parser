@@ -1,27 +1,34 @@
 language: go
+
 sudo: false
+
 go:
-- 1.8
-- 1.9
-- tip
+  - 1.8
+  - 1.9
+  - tip
+
 matrix:
   allow_failures:
-  - go: tip
+    - go: tip
+
 install:
-- go get golang.org/x/tools/cmd/cover
-- go get github.com/modocache/gover
-- go get github.com/mattn/goveralls
-- go get honnef.co/go/tools/cmd/unused
-- go get honnef.co/go/tools/cmd/staticcheck
-- go get -v -t ./...
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/modocache/gover
+  - go get github.com/mattn/goveralls
+  - go get honnef.co/go/tools/cmd/unused
+  - go get honnef.co/go/tools/cmd/staticcheck
+  - go get -v -t ./...
+
 script:
-- go vet $(go list ./... | grep -v /vendor/)
-- unused $(go list ./... | grep -v /vendor/)
-- staticcheck $(go list ./... | grep -v /vendor/)
-- go test -cover -coverpkg github.com/smith-30/go-goo.gl-parser -coverprofile go-goo.gl-parser.coverprofile
+  - go vet $(go list ./... | grep -v /vendor/)
+  - unused $(go list ./... | grep -v /vendor/)
+  - staticcheck $(go list ./... | grep -v /vendor/)
+  - go test -cover -coverpkg github.com/smith-30/go-goo.gl-parser -coverprofile go-goo.gl-parser.coverprofile
+
 after_script:
-- gover
-- goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
+  - gover
+  - goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
+
 env:
   global:
     secure: VSLcdxew+ERny9s6ocqLY585DDPRj6xQ0wMW+N2VvleZkVcWPY/8TS0rXTNoVgsVvm2W45UYE9KJqCSpzX61SLHcToe4DbATtYVWCVACDJfPihxMaCRgsNqgQOQrcW0G8zUWf7V6TPAyX4w9ufUhpjzhtiEAQDZLBLEcbC9jL5S/jXjx+QonFfkzSXr2eCXnl1628tkwl5oeEPI94WFsl9cGy3P0v3VDHy/MqV4HAk6Gi2qaZtLz3aqpyWiBmFcQd7Ri/cfqlS6UkBAsDHtiox3zsccRQoUH/gJb+pYFQCfu4mCvH0nmNtuBzHHcutWvrV3mI5ysOIfUWqGwNg8L8gazybZiYLZ3aHPeR7c4bZq3qw2qPhPZTiaTfzYzhksFXSGJTjbps1athCFvr/lANq3MiacmnRycNUJ00kXguvda7ndxWnMhgFDfWjmuagRczL/QMIjodMFsmC8oMQVKK1EtorQ2Ve2Prsy0y1Y3xa6pcTf6FKrkuW+oyTK2zl+oA15zfPkCPAAmey4pEorKToDEAjmmH3w+Mcr6C4vD3tsYTeWVNzJcBfjlY+nLuyd11KZnpMRe2poKPP4w98WXoVHxCk6akBL6uAerg+BTLwCGrK1+DjCykAZ5k9bTOc27qva4qshLCLeZGWbqXtV0J2JXI8xs8OxFyOKUl9PXh64=
