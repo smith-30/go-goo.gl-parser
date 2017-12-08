@@ -23,7 +23,7 @@ script:
   - go vet $(go list ./... | grep -v /vendor/)
   - unused $(go list ./... | grep -v /vendor/)
   - staticcheck $(go list ./... | grep -v /vendor/)
-  - go test -cover -coverpkg github.com/smith-30/go-goo.gl-parser -coverprofile go-goo.gl-parser.coverprofile
+  - go test -cover -coverpkg github.com/smith-30/go-goo.gl-parser/parser -coverprofile go-goo.gl-parser.coverprofile
 
 after_script:
   - gover
