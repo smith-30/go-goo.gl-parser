@@ -13,7 +13,6 @@ install:
   - go get golang.org/x/tools/cmd/cover
   - go get github.com/modocache/gover
   - go get github.com/mattn/goveralls
-  - go get honnef.co/go/tools/cmd/gosimple
   - go get honnef.co/go/tools/cmd/unused
   - go get honnef.co/go/tools/cmd/staticcheck
   - go get -v -t ./...
@@ -21,12 +20,13 @@ install:
 script:
   - go vet $(go list ./... | grep -v /vendor/)
   - unused $(go list ./... | grep -v /vendor/)
-  - gosimple $(go list ./... | grep -v /vendor/)
   - staticcheck $(go list ./... | grep -v /vendor/)
   - go test -cover -coverpkg github.com/smith-30/go-goo.gl-parser -coverprofile go-goo.gl-parser.coverprofile
 
 after_script:
   - gover
   - goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
-dd:
-  secure: NiEgftD40NbQDd8qSCbkSJz6LHn3p1CXnKS3C2QVoG5DuNXfD+wtbwBxbx3yye1DS6+PdH97JeqMVKd84zXBgpdFAq+JWEMFA2Uff2UCn+GoH/wgNvbuoSadEGjx/ZhFIqJydSv/25WIq2RiCAiJ23mjiMmvJ7FbV1BJ7wOBXmjEYVbT84IZHehsnHI5Xa3gcT9HRiQAwTbYT3Qg1gnWIuUIJT3u+QLXkLYARn/hZou3IoOzfqJPoIxXMok3omhmVPh5jufWMtR5uY3EeTLVPwK5oMbBpGHs5Do8XmbvhfDMr9Kg5dAZ0lBI+VPxS5HQXrqrurK+B79bTfySz99+PEGDv4QnwCupZLhpTILRRO2BcrS9o21TJUXcfJHFDBhrm+MWEN0KbWreNAnlrgcuy9H4rDjRSNKtg1nLbxVBo16CON5omuznjd9I6GrhjNjj5+woZSroVyd8fC1TgHlP2i/nzr8e2rHvf1f4kj4MGJykW/eCmjIo9tKnkD1pB7LfisMB4kIkcEdivzy4geIQDLhtTTGBpHEMxdiTQ2SDO1BXCTSUoXqrlXBYBegzvMDVvC/PZlf1p4hqe1q6TiCHvUKelT3A5WbssdyaLFng7aU4e5B7OBf9ezd9ylqe6TgEt5Qzx7+t9/Gc1LcagH1sbninmraOlBUY6d5OFBBcEoo=
+
+env:
+  global:
+    secure: NiEgftD40NbQDd8qSCbkSJz6LHn3p1CXnKS3C2QVoG5DuNXfD+wtbwBxbx3yye1DS6+PdH97JeqMVKd84zXBgpdFAq+JWEMFA2Uff2UCn+GoH/wgNvbuoSadEGjx/ZhFIqJydSv/25WIq2RiCAiJ23mjiMmvJ7FbV1BJ7wOBXmjEYVbT84IZHehsnHI5Xa3gcT9HRiQAwTbYT3Qg1gnWIuUIJT3u+QLXkLYARn/hZou3IoOzfqJPoIxXMok3omhmVPh5jufWMtR5uY3EeTLVPwK5oMbBpGHs5Do8XmbvhfDMr9Kg5dAZ0lBI+VPxS5HQXrqrurK+B79bTfySz99+PEGDv4QnwCupZLhpTILRRO2BcrS9o21TJUXcfJHFDBhrm+MWEN0KbWreNAnlrgcuy9H4rDjRSNKtg1nLbxVBo16CON5omuznjd9I6GrhjNjj5+woZSroVyd8fC1TgHlP2i/nzr8e2rHvf1f4kj4MGJykW/eCmjIo9tKnkD1pB7LfisMB4kIkcEdivzy4geIQDLhtTTGBpHEMxdiTQ2SDO1BXCTSUoXqrlXBYBegzvMDVvC/PZlf1p4hqe1q6TiCHvUKelT3A5WbssdyaLFng7aU4e5B7OBf9ezd9ylqe6TgEt5Qzx7+t9/Gc1LcagH1sbninmraOlBUY6d5OFBBcEoo=
