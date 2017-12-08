@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/smith-30/go-goo.gl-parser/goo.gl/parser"
+	"github.com/smith-30/go-goo.gl-parser/parser"
 )
 
 func main() {
