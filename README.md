@@ -12,7 +12,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/smith-30/go-goo.gl-parser/parser"
+	parser "github.com/smith-30/go-goo.gl-parser"
 )
 
 func main() {
